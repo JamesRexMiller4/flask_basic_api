@@ -13,14 +13,14 @@ def create_app(test_config=none):
   db = SQLAlchemy(app)
   migrate = Migrate(app, db)
   # alternatively can import from models directory
-  CORS(app, resources={r='*/api/*': {origins: '*'}})
+  CORS(app, resources={r='/api/*': {origins: '*'}})
 
   @app.after_request
   def after_request(response):
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
     response.headers.add('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS')
     return response
-    
+
   @app.route('/')
   @cross_origin
   def hello():
